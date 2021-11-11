@@ -13,7 +13,21 @@
 		653CC051273C43E500B276B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653CC04F273C43E500B276B3 /* Main.storyboard */; };
 		653CC053273C43E500B276B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653CC052273C43E500B276B3 /* Assets.xcassets */; };
 		653CC056273C43E500B276B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653CC054273C43E500B276B3 /* LaunchScreen.storyboard */; };
+		653CC065273C4CAC00B276B3 /* PruebaTecnicaKairosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653CC064273C4CAC00B276B3 /* PruebaTecnicaKairosTests.swift */; };
+		653CC072273C53BE00B276B3 /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653CC071273C53BE00B276B3 /* CharactersViewModel.swift */; };
+		653CC075273C5F4600B276B3 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653CC074273C5F4600B276B3 /* CharacterModel.swift */; };
+		654DED69273CECFB005EEA9D /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654DED68273CECFB005EEA9D /* Client.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		653CC066273C4CAC00B276B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 653CC03E273C43E500B276B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 653CC045273C43E500B276B3;
+			remoteInfo = PruebaTecnicaKairos;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		653CC046273C43E500B276B3 /* PruebaTecnicaKairos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PruebaTecnicaKairos.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,10 +38,22 @@
 		653CC052273C43E500B276B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		653CC055273C43E500B276B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		653CC057273C43E500B276B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		653CC062273C4CAC00B276B3 /* PruebaTecnicaKairosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PruebaTecnicaKairosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		653CC064273C4CAC00B276B3 /* PruebaTecnicaKairosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PruebaTecnicaKairosTests.swift; sourceTree = "<group>"; };
+		653CC071273C53BE00B276B3 /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
+		653CC074273C5F4600B276B3 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
+		654DED68273CECFB005EEA9D /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		653CC043273C43E500B276B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		653CC05F273C4CAC00B276B3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				653CC048273C43E500B276B3 /* PruebaTecnicaKairos */,
+				653CC063273C4CAC00B276B3 /* PruebaTecnicaKairosTests */,
 				653CC047273C43E500B276B3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				653CC046273C43E500B276B3 /* PruebaTecnicaKairos.app */,
+				653CC062273C4CAC00B276B3 /* PruebaTecnicaKairosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -56,6 +84,7 @@
 		653CC048273C43E500B276B3 /* PruebaTecnicaKairos */ = {
 			isa = PBXGroup;
 			children = (
+				653CC05D273C4C7100B276B3 /* Features */,
 				653CC049273C43E500B276B3 /* AppDelegate.swift */,
 				653CC04B273C43E500B276B3 /* SceneDelegate.swift */,
 				653CC04D273C43E500B276B3 /* ViewController.swift */,
@@ -65,6 +94,64 @@
 				653CC057273C43E500B276B3 /* Info.plist */,
 			);
 			path = PruebaTecnicaKairos;
+			sourceTree = "<group>";
+		};
+		653CC05D273C4C7100B276B3 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				654DED67273CECD7005EEA9D /* Shared */,
+				653CC06D273C4CF100B276B3 /* CharactersList */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		653CC063273C4CAC00B276B3 /* PruebaTecnicaKairosTests */ = {
+			isa = PBXGroup;
+			children = (
+				653CC06B273C4CB700B276B3 /* features */,
+				653CC064273C4CAC00B276B3 /* PruebaTecnicaKairosTests.swift */,
+			);
+			path = PruebaTecnicaKairosTests;
+			sourceTree = "<group>";
+		};
+		653CC06B273C4CB700B276B3 /* features */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = features;
+			sourceTree = "<group>";
+		};
+		653CC06D273C4CF100B276B3 /* CharactersList */ = {
+			isa = PBXGroup;
+			children = (
+				653CC073273C5F2A00B276B3 /* Models */,
+				653CC070273C538300B276B3 /* ViewModels */,
+			);
+			path = CharactersList;
+			sourceTree = "<group>";
+		};
+		653CC070273C538300B276B3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				653CC071273C53BE00B276B3 /* CharactersViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		653CC073273C5F2A00B276B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				653CC074273C5F4600B276B3 /* CharacterModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		654DED67273CECD7005EEA9D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				654DED68273CECFB005EEA9D /* Client.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +174,24 @@
 			productReference = 653CC046273C43E500B276B3 /* PruebaTecnicaKairos.app */;
 			productType = "com.apple.product-type.application";
 		};
+		653CC061273C4CAC00B276B3 /* PruebaTecnicaKairosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 653CC068273C4CAC00B276B3 /* Build configuration list for PBXNativeTarget "PruebaTecnicaKairosTests" */;
+			buildPhases = (
+				653CC05E273C4CAC00B276B3 /* Sources */,
+				653CC05F273C4CAC00B276B3 /* Frameworks */,
+				653CC060273C4CAC00B276B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				653CC067273C4CAC00B276B3 /* PBXTargetDependency */,
+			);
+			name = PruebaTecnicaKairosTests;
+			productName = PruebaTecnicaKairosTests;
+			productReference = 653CC062273C4CAC00B276B3 /* PruebaTecnicaKairosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,6 +204,10 @@
 				TargetAttributes = {
 					653CC045273C43E500B276B3 = {
 						CreatedOnToolsVersion = 13.0;
+					};
+					653CC061273C4CAC00B276B3 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 653CC045273C43E500B276B3;
 					};
 				};
 			};
@@ -116,6 +225,7 @@
 			projectRoot = "";
 			targets = (
 				653CC045273C43E500B276B3 /* PruebaTecnicaKairos */,
+				653CC061273C4CAC00B276B3 /* PruebaTecnicaKairosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -131,6 +241,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		653CC060273C4CAC00B276B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -138,13 +255,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				654DED69273CECFB005EEA9D /* Client.swift in Sources */,
 				653CC04E273C43E500B276B3 /* ViewController.swift in Sources */,
 				653CC04A273C43E500B276B3 /* AppDelegate.swift in Sources */,
+				653CC075273C5F4600B276B3 /* CharacterModel.swift in Sources */,
 				653CC04C273C43E500B276B3 /* SceneDelegate.swift in Sources */,
+				653CC072273C53BE00B276B3 /* CharactersViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		653CC05E273C4CAC00B276B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				653CC065273C4CAC00B276B3 /* PruebaTecnicaKairosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		653CC067273C4CAC00B276B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 653CC045273C43E500B276B3 /* PruebaTecnicaKairos */;
+			targetProxy = 653CC066273C4CAC00B276B3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		653CC04F273C43E500B276B3 /* Main.storyboard */ = {
@@ -336,6 +472,50 @@
 			};
 			name = Release;
 		};
+		653CC069273C4CAC00B276B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DanielJimAlv.PruebaTecnicaKairosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PruebaTecnicaKairos.app/PruebaTecnicaKairos";
+			};
+			name = Debug;
+		};
+		653CC06A273C4CAC00B276B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DanielJimAlv.PruebaTecnicaKairosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PruebaTecnicaKairos.app/PruebaTecnicaKairos";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -353,6 +533,15 @@
 			buildConfigurations = (
 				653CC05B273C43E500B276B3 /* Debug */,
 				653CC05C273C43E500B276B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		653CC068273C4CAC00B276B3 /* Build configuration list for PBXNativeTarget "PruebaTecnicaKairosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				653CC069273C4CAC00B276B3 /* Debug */,
+				653CC06A273C4CAC00B276B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

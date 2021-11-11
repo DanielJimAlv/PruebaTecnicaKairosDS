@@ -42,6 +42,14 @@ final class CharactersListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    @IBSegueAction func segue(_ coder: NSCoder) -> CharacterDetailViewController? {
+        guard let selectCharacter = tableView.indexPathForSelectedRow else {
+            return nil
+        }
+        let id = viewModel.characters[selectCharacter.row].id
+        return CharacterDetailViewController(id: id, coder: coder)
+    }
+    
     private func showError(_ error: String) {
         let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
         let alert = UIAlertController(title: appName, message: error, preferredStyle: .alert)

@@ -41,10 +41,10 @@ final class CharacterDetailViewModel {
             name: detail.data.results.first?.name ?? "",
             description: detail.data.results.first?.description ?? "",
             imageUrl: imageUrl,
-            commics: detail.data.results.first?.comics.available ?? 0,
-            series: detail.data.results.first?.series.available ?? 0,
-            stories: detail.data.results.first?.stories.available ?? 0,
-            events: detail.data.results.first?.events.available ?? 0)
+            comics: "\(detail.data.results.first?.comics.available ?? 0)",
+            series: "\(detail.data.results.first?.series.available ?? 0)",
+            stories: "\(detail.data.results.first?.stories.available ?? 0)",
+            events: "\(detail.data.results.first?.events.available ?? 0)")
         
         return result
     }
@@ -55,8 +55,8 @@ struct CharacterDetail {
     let name: String
     let description: String
     let imageUrl: String?
-    let commics: Int
-    let series: Int
-    let stories: Int
-    let events: Int
+    let comics: String
+    let series: String
+    let stories: String
+    let events: String
 }

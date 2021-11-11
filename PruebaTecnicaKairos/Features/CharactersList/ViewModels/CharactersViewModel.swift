@@ -35,7 +35,7 @@ final class CharacterViewModel {
             var imageUrl = "\(character.thumbnail.path).\(character.thumbnail.extension)"
             // Workaround path is http we need https (http url not secure)
             imageUrl = imageUrl.replacingOccurrences(of: "http://", with: "https://")
-            result.append(CharacterMarvel(name: character.name, description: character.description, imageUrl: imageUrl))
+            result.append(CharacterMarvel(id: character.id, name: character.name, description: character.description, imageUrl: imageUrl))
         }
         
         return result
@@ -43,6 +43,7 @@ final class CharacterViewModel {
 }
 
 struct CharacterMarvel {
+    let id: Int
     let name: String
     let description: String
     let imageUrl: String

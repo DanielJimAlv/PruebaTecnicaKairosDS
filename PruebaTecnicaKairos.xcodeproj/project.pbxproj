@@ -22,6 +22,7 @@
 		6576E5AD273D8EB00005C184 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E5AC273D8EB00005C184 /* CharacterDetailViewModel.swift */; };
 		6576E5B0273D8EEC0005C184 /* CharacterDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E5AF273D8EEC0005C184 /* CharacterDetailModel.swift */; };
 		6576E5B2273D90F30005C184 /* CharacterDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E5B1273D90F30005C184 /* CharacterDetailTests.swift */; };
+		6576E5B4273D9F370005C184 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E5B3273D9F370005C184 /* CharacterDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		6576E5AC273D8EB00005C184 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
 		6576E5AF273D8EEC0005C184 /* CharacterDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailModel.swift; sourceTree = "<group>"; };
 		6576E5B1273D90F30005C184 /* CharacterDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailTests.swift; sourceTree = "<group>"; };
+		6576E5B3273D9F370005C184 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				6576E5AE273D8ED90005C184 /* Models */,
 				6576E5AB273D8E7E0005C184 /* ViewModels */,
+				6576E5B5273D9F3E0005C184 /* View */,
 			);
 			path = CharacterDetail;
 			sourceTree = "<group>";
@@ -199,6 +202,14 @@
 				6576E5AF273D8EEC0005C184 /* CharacterDetailModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		6576E5B5273D9F3E0005C184 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6576E5B3273D9F370005C184 /* CharacterDetailViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6576E5B4273D9F370005C184 /* CharacterDetailViewController.swift in Sources */,
 				654DED69273CECFB005EEA9D /* Client.swift in Sources */,
 				653CC04A273C43E500B276B3 /* AppDelegate.swift in Sources */,
 				6576E5A7273D7F790005C184 /* UIImageView+Extension.swift in Sources */,

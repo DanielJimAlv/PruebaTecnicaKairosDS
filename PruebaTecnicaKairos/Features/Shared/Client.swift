@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum ResposeError: Error {
     case responseError(String)
@@ -16,9 +17,6 @@ struct ResponseErrorModel: Decodable {
     let code: Int
     let status: String
 }
-
-
-// ExampleUrl = "https://gateway.marvel.com/v1/public/characters?apikey=cc681352ccababe03733a18696aafe66&ts=1&hash=b2b9ac5a976fb366de4d5efb90fc74ef&limit=10"
 
 final class Client {
     private var task: URLSessionDataTask?
@@ -91,3 +89,5 @@ final class Client {
         handleCompletion(model: nil, error: ResposeError.responseError(errorModel.status), completion: completion)
     }
 }
+
+

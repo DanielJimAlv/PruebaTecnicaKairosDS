@@ -33,7 +33,7 @@ final class CharacterViewModel {
         var result: [CharacterMarvel] = []
         characters.forEach { character in
             var imageUrl = "\(character.thumbnail.path).\(character.thumbnail.extension)"
-            // Workaround path is http we need https (http url not work)
+            // Workaround path is http we need https (http url not secure)
             imageUrl = imageUrl.replacingOccurrences(of: "http://", with: "https://")
             result.append(CharacterMarvel(name: character.name, description: character.description, imageUrl: imageUrl))
         }

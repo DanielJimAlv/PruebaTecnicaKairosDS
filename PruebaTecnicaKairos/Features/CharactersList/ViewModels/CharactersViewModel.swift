@@ -8,13 +8,12 @@
 import UIKit
 
 final class CharacterViewModel {
-    private let endPoint = "https://gateway.marvel.com/v1/public/characters"
     private let client = Client()
     
     var characters: [CharacterMarvel] = []
     
     func getCharacters(completion: @escaping (String?) -> Void) {
-        client.getData(endPoint, model: CharactersModel.self, params: nil) { [weak self]  maybeCharacters, maybeError in
+        client.getData(MarvelConstants.characterUrl, model: CharactersModel.self, params: nil) { [weak self]  maybeCharacters, maybeError in
             guard let self = self, let characters = maybeCharacters?.data.results else {
                 completion(maybeError?.localizedDescription ?? "Error loading characters")
                 return

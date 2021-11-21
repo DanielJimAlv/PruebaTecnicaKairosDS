@@ -20,30 +20,11 @@ struct ResponseErrorModel: Decodable {
 
 final class Client {
     private var task: URLSessionDataTask?
-    private let defaultParams: [String: Any] = [
-        "apikey": "cc681352ccababe03733a18696aafe66",
-        "ts": 1,
-        "hash": "b2b9ac5a976fb366de4d5efb90fc74ef"
-    ]
     
     func getData<Model: Decodable>(_ stringUrl: String, model: Model.Type, params: [String: Any]? = nil, completion: @escaping (Model?, Error?) -> Void) {
-        guard let url = URL(string: stringUrl) else {
-            fatalError("url must be a valid url")
-        }
+        let url = createUrl(with: params, stringUrl: stringUrl)
         
-        var usedParams = defaultParams
-        if let params = params {
-            params.forEach { key, value in
-                usedParams[key] = value
-            }
-        }
-        
-        var components = URLComponents(string: stringUrl)
-        components?.queryItems = usedParams.map { key, value in
-            URLQueryItem(name: key, value: "\(value)")
-        }
-        
-        task = URLSession.shared.dataTask(with: components?.url ?? url) { [weak self] maybeData, maybeResponse, maybeError in
+        task = URLSession.shared.dataTask(with: url) { [weak self] maybeData, maybeResponse, maybeError in
             if let error = maybeError {
                 self?.handleCompletion(model: nil, error: error, completion: completion)
             }
@@ -71,6 +52,22 @@ final class Client {
     
     func cancel() {
         task?.cancel()
+    }
+    
+    private func createUrl(with params: [String: Any]?, stringUrl: String) -> URL {
+        guard let url = URL(string: stringUrl) else {
+            fatalError("url must be a valid url")
+        }
+        
+        if let params = params {
+            var components = URLComponents(string: stringUrl)
+            components?.queryItems = params.map { key, value in
+                URLQueryItem(name: key, value: "\(value)")
+            }
+            return components?.url ?? url
+        }
+        
+        return url
     }
     
     private func handleCompletion<Model: Decodable>(model: Model?, error: Error?, completion: @escaping (Model?, Error?) -> Void) {

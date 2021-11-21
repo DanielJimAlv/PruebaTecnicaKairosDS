@@ -24,6 +24,7 @@ class CharacterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupAppeareance()
         getData()
     }
     
@@ -38,16 +39,29 @@ class CharacterDetailViewController: UIViewController {
     
     private func getData() {
         activityIndicator.startAnimating()
-        viewModel.getDetail(id: id) { [weak self] _ in
+        viewModel.getDetail(id: id) { [weak self] maybeError in
             guard let self = self else {
                 return
             }
             self.activityIndicator.stopAnimating()
             
+            if let error = maybeError {
+                self.showError(error)
+                return
+            }
+            
             let detail = self.viewModel.characterDetail
             
             self.updateView(with: detail)
         }
+    }
+    
+    private func setupAppeareance() {
+        descriptionLabel.text = nil
+        comicsLabel.text = nil
+        seriesLabel.text = nil
+        storiesLabel.text = nil
+        eventsLabel.text = nil
     }
     
     private func updateView(with detail: CharacterDetail?) {
@@ -60,5 +74,14 @@ class CharacterDetailViewController: UIViewController {
         seriesLabel.text = detail?.series
         storiesLabel.text = detail?.stories
         eventsLabel.text = detail?.events
+    }
+    
+    private func showError(_ error: String) {
+        let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
+        let alert = UIAlertController(title: appName, message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }

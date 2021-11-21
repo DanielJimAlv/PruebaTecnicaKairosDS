@@ -18,7 +18,7 @@ struct MarvelConstants {
     private static let ts = 1
     private static let hash = "b2b9ac5a976fb366de4d5efb90fc74ef"
 
-    static var characterUrl: String {
+    static var charactersUrl: String {
         createCharacterUrl()
     }
     

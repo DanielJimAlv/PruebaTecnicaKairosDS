@@ -21,10 +21,15 @@ struct ResponseErrorModel: Decodable {
 final class Client {
     private var task: URLSessionDataTask?
     
-    func getData<Model: Decodable>(_ stringUrl: String, model: Model.Type, params: [String: Any]? = nil, completion: @escaping (Model?, Error?) -> Void) {
+    func getData<Model: Decodable>(_ stringUrl: String, model: Model.Type, params: [String: Any]? = nil, sessionConfiguration: URLSessionConfiguration?, completion: @escaping (Model?, Error?) -> Void) {
         let url = createUrl(with: params, stringUrl: stringUrl)
         
-        task = URLSession.shared.dataTask(with: url) { [weak self] maybeData, maybeResponse, maybeError in
+        var session = URLSession.shared
+        if let sessionConfiguration = sessionConfiguration {
+            session = URLSession(configuration: sessionConfiguration)
+        }
+        
+        task = session.dataTask(with: url) { [weak self] maybeData, maybeResponse, maybeError in
             if let error = maybeError {
                 self?.handleCompletion(model: nil, error: error, completion: completion)
             }

@@ -17,35 +17,44 @@ class CharacterListTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testClient() {
-        let client = Client()
-        let testUrl = "https://gateway.marvel.com/v1/public/characters"
-        let expectedCount = 10
-        
-        let expectation = expectation(description: "Load characters data")
-        
-        client.getData(testUrl, model: CharactersModel.self, params: ["limit": expectedCount]) { maybeCharacters, maybeError in
-            if let error = maybeError {
-                XCTFail(error.localizedDescription)
-            }
-            
-            if let caracters = maybeCharacters {
-                XCTAssertEqual(caracters.data.results.count, expectedCount)
-            } else {
-                XCTFail("Could not unwrap characters")
-            }
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 3)
-    }
     
+    func testCharacterModel() {
+        let expectedCode =  200
+        let expectedStatus = "Ok"
+        let expectedResultsCount = 20
+        let expectedResultId = 1011334
+        let expectedResultName = "3-D Man"
+        let expectedResultDescription = "3-D Description"
+        let expectedResultThumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"
+        let expectedResultThumbnailExtension = "jpg"
+        
+        let data = LoadJsonHelper.loadJson(name: "CharactersMock")
+        guard let charactersModel = try? JSONDecoder().decode(CharactersModel.self, from: data) else {
+            XCTFail("Could not decode CharactersModel")
+            return
+        }
+                
+        XCTAssertEqual(charactersModel.code, expectedCode)
+        XCTAssertEqual(charactersModel.status, expectedStatus)
+        XCTAssertEqual(charactersModel.data.results.count, expectedResultsCount)
+        XCTAssertEqual(charactersModel.data.results[0].id, expectedResultId)
+        XCTAssertEqual(charactersModel.data.results[0].name, expectedResultName)
+        XCTAssertEqual(charactersModel.data.results[0].description, expectedResultDescription)
+        XCTAssertEqual(charactersModel.data.results[0].thumbnail.path, expectedResultThumbnailPath)
+        XCTAssertEqual(charactersModel.data.results[0].thumbnail.extension, expectedResultThumbnailExtension)
+    }
+
     func testCharacterViewModel() {
         let viewModel = CharacterViewModel()
+        let testStringUrl = MarvelConstants.charactersUrl
+        let data = LoadJsonHelper.loadJson(name: "CharactersMock")
+        let statusCode = 200
+
+        URLSessionMock.testsURLs = [testStringUrl: (data, statusCode)]
+        
         let expectation = expectation(description: "Load characters")
         
-        viewModel.getCharacters { maybeError in
+        viewModel.getCharacters(with: URLSessionMock.createConfiguration()) { maybeError in
             if let error = maybeError {
                 XCTFail(error)
             }

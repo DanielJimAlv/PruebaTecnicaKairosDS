@@ -12,9 +12,9 @@ final class CharacterDetailViewModel {
 
     var characterDetail: CharacterDetail?
     
-    func getDetail(id: Int, completion: @escaping (String?) -> Void) {
+    func getDetail(id: Int, sessionConfiguration: URLSessionConfiguration? = nil, completion: @escaping (String?) -> Void) {
         let url = MarvelConstants.characterDetailUrl(id: id)
-        client.getData(url, model: CharacterDetailModel.self, params: nil) { [weak self]  maybeDetail, maybeError in
+        client.getData(url, model: CharacterDetailModel.self, params: nil, sessionConfiguration: sessionConfiguration) { [weak self]  maybeDetail, maybeError in
             guard let self = self, let detail = maybeDetail else {
                 completion(maybeError?.localizedDescription ?? "Error loading character detail")
                 return

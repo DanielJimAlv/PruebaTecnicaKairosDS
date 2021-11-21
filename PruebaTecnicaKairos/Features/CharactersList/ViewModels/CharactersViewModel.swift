@@ -12,8 +12,8 @@ final class CharacterViewModel {
     
     var characters: [CharacterMarvel] = []
     
-    func getCharacters(completion: @escaping (String?) -> Void) {
-        client.getData(MarvelConstants.characterUrl, model: CharactersModel.self, params: nil) { [weak self]  maybeCharacters, maybeError in
+    func getCharacters(with sessionConfiguration: URLSessionConfiguration? = nil, completion: @escaping (String?) -> Void) {
+        client.getData(MarvelConstants.charactersUrl, model: CharactersModel.self, params: nil, sessionConfiguration: sessionConfiguration) { [weak self]  maybeCharacters, maybeError in
             guard let self = self, let characters = maybeCharacters?.data.results else {
                 completion(maybeError?.localizedDescription ?? "Error loading characters")
                 return

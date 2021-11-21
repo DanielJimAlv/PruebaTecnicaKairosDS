@@ -20,10 +20,15 @@ class CharacterDetailTests: XCTestCase {
 
     func testCharacterDetail() {
         let viewModel = CharacterDetailViewModel()
-        let expectation = expectation(description: "Load character detail")
         let characterId = 1011334
+        let testStringUrl = MarvelConstants.characterDetailUrl(id: characterId)
+        let data = LoadJsonHelper.loadJson(name: "CharacterDetail")
+        let statusCode = 200
+        let expectation = expectation(description: "Load character detail")
         
-        viewModel.getDetail(id: characterId) { maybeError in
+        URLSessionMock.testsURLs = [testStringUrl: (data, statusCode)]
+        
+        viewModel.getDetail(id: characterId, sessionConfiguration: URLSessionMock.createConfiguration()) { maybeError in
             if let error = maybeError {
                 XCTFail(error)
             }

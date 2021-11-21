@@ -19,16 +19,16 @@ class CharacterDetailTests: XCTestCase {
     }
 
     func testCharacterDetail() {
-        let vm = CharacterDetailViewModel()
+        let viewModel = CharacterDetailViewModel()
         let expectation = expectation(description: "Load character detail")
         let characterId = 1011334
         
-        vm.getDetail(id: characterId) { maybeError in
+        viewModel.getDetail(id: characterId) { maybeError in
             if let error = maybeError {
                 XCTFail(error)
             }
             
-            XCTAssertEqual(vm.characterDetail?.id, characterId)
+            XCTAssertEqual(viewModel.characterDetail?.id, characterId)
             expectation.fulfill()
         }
         

@@ -43,4 +43,3 @@ struct CharacterDetailStories: Decodable {
 struct CharacterDetailEvents: Decodable {
     let available: Int
 }
-

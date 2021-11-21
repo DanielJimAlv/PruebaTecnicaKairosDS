@@ -10,10 +10,10 @@ import Foundation
 final class CharacterDetailViewModel {
     private let endPoint = "https://gateway.marvel.com/v1/public/characters"
     private let client = Client()
-    
+
     var characterDetail: CharacterDetail?
-                
-    func getDetail(id: Int, completion: @escaping (String?) -> ()) {
+    
+    func getDetail(id: Int, completion: @escaping (String?) -> Void) {
         client.getData("\(endPoint)/\(id)", model: CharacterDetailModel.self, params: nil) { [weak self]  maybeDetail, maybeError in
             guard let self = self, let detail = maybeDetail else {
                 completion(maybeError?.localizedDescription ?? "Error loading character detail")

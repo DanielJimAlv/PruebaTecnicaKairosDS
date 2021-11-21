@@ -42,15 +42,15 @@ class CharacterListTests: XCTestCase {
     }
     
     func testCharacterViewModel() {
-        let vm = CharacterViewModel()
+        let viewModel = CharacterViewModel()
         let expectation = expectation(description: "Load characters")
         
-        vm.getCharacters { maybeError in
+        viewModel.getCharacters { maybeError in
             if let error = maybeError {
                 XCTFail(error)
             }
             
-            XCTAssertEqual(vm.characters.count, 20)
+            XCTAssertEqual(viewModel.characters.count, 20)
             expectation.fulfill()
         }
         

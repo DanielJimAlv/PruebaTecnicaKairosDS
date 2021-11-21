@@ -25,8 +25,8 @@ final class Client {
         "ts": 1,
         "hash": "b2b9ac5a976fb366de4d5efb90fc74ef"
     ]
-        
-    func getData<Model: Decodable>(_ stringUrl: String, model: Model.Type, params: [String : Any]? = nil, completion: @escaping (Model?, Error?) -> ())  {
+    
+    func getData<Model: Decodable>(_ stringUrl: String, model: Model.Type, params: [String: Any]? = nil, completion: @escaping (Model?, Error?) -> Void) {
         guard let url = URL(string: stringUrl) else {
             fatalError("url must be a valid url")
         }
@@ -42,7 +42,7 @@ final class Client {
         components?.queryItems = usedParams.map { key, value in
             URLQueryItem(name: key, value: "\(value)")
         }
-                
+        
         task = URLSession.shared.dataTask(with: components?.url ?? url) { [weak self] maybeData, maybeResponse, maybeError in
             if let error = maybeError {
                 self?.handleCompletion(model: nil, error: error, completion: completion)
@@ -64,7 +64,6 @@ final class Client {
             } catch {
                 self?.handleCompletion(model: nil, error: error, completion: completion)
             }
-            
         }
         
         task?.resume()
@@ -74,13 +73,13 @@ final class Client {
         task?.cancel()
     }
     
-    private func handleCompletion<Model: Decodable>(model: Model?, error: Error?, completion: @escaping (Model?, Error?) -> ()) {
+    private func handleCompletion<Model: Decodable>(model: Model?, error: Error?, completion: @escaping (Model?, Error?) -> Void) {
         DispatchQueue.main.async {
             completion(model, error)
         }
     }
     
-    private func handleError<Model: Decodable>(response: HTTPURLResponse, data: Data?, completion: @escaping (Model?, Error?) -> ()) {
+    private func handleError<Model: Decodable>(response: HTTPURLResponse, data: Data?, completion: @escaping (Model?, Error?) -> Void) {
         guard let data = data, let errorModel = try? JSONDecoder().decode(ResponseErrorModel.self, from: data) else {
             handleCompletion(model: nil, error: ResposeError.unknowError, completion: completion)
             return
@@ -89,5 +88,3 @@ final class Client {
         handleCompletion(model: nil, error: ResposeError.responseError(errorModel.status), completion: completion)
     }
 }
-
-

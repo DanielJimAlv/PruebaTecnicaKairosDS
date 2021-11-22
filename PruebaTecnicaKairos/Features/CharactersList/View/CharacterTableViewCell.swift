@@ -8,9 +8,9 @@
 import UIKit
 
 class CharacterTableViewCell: UITableViewCell {
-    @IBOutlet private weak var imageViewImage: UIImageView!
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet weak var imageViewImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func prepareForReuse() {
         imageViewImage.image = nil

@@ -7,28 +7,14 @@
 
 import Foundation
 
-final class CharacterDetailViewModel {
-    private let client = Client()
-
-    var characterDetail: CharacterDetail?
+protocol CharacterDetailViewModelProtocol {
+    var characterDetail: CharacterDetail? { get set }
     
-    func getDetail(id: Int, sessionConfiguration: URLSessionConfiguration? = nil, completion: @escaping (String?) -> Void) {
-        let url = MarvelConstants.characterDetailUrl(id: id)
-        client.getData(url, model: CharacterDetailModel.self, params: nil, sessionConfiguration: sessionConfiguration) { [weak self]  maybeDetail, maybeError in
-            guard let self = self, let detail = maybeDetail else {
-                completion(maybeError?.localizedDescription ?? "Error loading character detail")
-                return
-            }
-            self.characterDetail = self.converDetail(detail)
-            completion(nil)
-        }
-    }
-    
-    func cancel() {
-        client.cancel()
-    }
-    
-    private func converDetail(_ detail: CharacterDetailModel) -> CharacterDetail {
+    func getDetail(id: Int, sessionConfiguration: URLSessionConfiguration?, completion: @escaping (String?) -> Void)
+    func converDetail(_ detail: CharacterDetailModel) -> CharacterDetail
+}
+extension CharacterDetailViewModelProtocol {
+    func converDetail(_ detail: CharacterDetailModel) -> CharacterDetail {
         var imageUrl: String?
         if let path = detail.data.results.first?.thumbnail.path, let ext = detail.data.results.first?.thumbnail.extension {
             imageUrl = "\(path).\(ext)"
@@ -47,6 +33,28 @@ final class CharacterDetailViewModel {
             events: "\(detail.data.results.first?.events.available ?? 0)")
         
         return result
+    }
+}
+
+final class CharacterDetailViewModel: CharacterDetailViewModelProtocol {
+    private let client = Client()
+
+    var characterDetail: CharacterDetail?
+    
+    func getDetail(id: Int, sessionConfiguration: URLSessionConfiguration?, completion: @escaping (String?) -> Void) {
+        let url = MarvelConstants.characterDetailUrl(id: id)
+        client.getData(url, model: CharacterDetailModel.self, params: nil, sessionConfiguration: sessionConfiguration) { [weak self]  maybeDetail, maybeError in
+            guard let self = self, let detail = maybeDetail else {
+                completion(maybeError?.localizedDescription ?? "Error loading character detail")
+                return
+            }
+            self.characterDetail = self.converDetail(detail)
+            completion(nil)
+        }
+    }
+    
+    func cancel() {
+        client.cancel()
     }
 }
 

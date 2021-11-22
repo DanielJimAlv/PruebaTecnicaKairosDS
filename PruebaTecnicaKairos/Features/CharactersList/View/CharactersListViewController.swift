@@ -8,8 +8,9 @@
 import UIKit
 
 final class CharactersListViewController: UITableViewController {
-
-    private let viewModel = CharacterViewModel()
+    
+    static let identifier = String(describing: CharactersListViewController.self)
+    var viewModel: CharacterViewModelProtocol = CharacterViewModel()
     private let activiyIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
@@ -37,16 +38,11 @@ final class CharactersListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let id = viewModel.characters[indexPath.row].id
+        let detailViewController = CharacterDetailViewController.create(id: id, viewModel: CharacterDetailViewModel())
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 
-    @IBSegueAction func segue(_ coder: NSCoder) -> CharacterDetailViewController? {
-        guard let selectCharacter = tableView.indexPathForSelectedRow else {
-            return nil
-        }
-        let id = viewModel.characters[selectCharacter.row].id
-        return CharacterDetailViewController(id: id, coder: coder)
-    }
-    
     private func showError(_ error: String) {
         let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
         let alert = UIAlertController(title: appName, message: error, preferredStyle: .alert)
@@ -55,7 +51,7 @@ final class CharactersListViewController: UITableViewController {
     
     private func getData() {
         activiyIndicator.startAnimating()
-        viewModel.getCharacters { [weak self] maybeError in
+        viewModel.getCharacters(with: nil) { [weak self] maybeError in
             self?.activiyIndicator.stopAnimating()
             if let error = maybeError {
                 self?.showError(error)

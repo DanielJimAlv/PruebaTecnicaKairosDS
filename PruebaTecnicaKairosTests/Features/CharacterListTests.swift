@@ -65,4 +65,34 @@ class CharacterListTests: XCTestCase {
         
         waitForExpectations(timeout: 3)
     }
+    
+    func testCharacterListViewController() {
+        let expectedNumberOfRows = 20
+        let identifier = CharactersListViewController.identifier
+        let bundle = Bundle(for: CharactersListViewController.self)
+        guard let characterVC = UIStoryboard(name: "Main", bundle: bundle).instantiateViewController(withIdentifier: identifier) as? CharactersListViewController else {
+            XCTFail("Could not instatiate CharacterListViewController")
+            return
+        }
+        
+        characterVC.viewModel = CharacterListViewModelMock()
+        characterVC.loadViewIfNeeded()
+        characterVC.viewDidLoad()
+        
+        XCTAssertEqual(characterVC.tableView.numberOfRows(inSection: 0), expectedNumberOfRows)
+        
+        guard let characterTableViewCell = characterVC.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CharacterTableViewCell else {
+            XCTFail("Could not cast to CharacterTableViewCell")
+            return
+        }
+        
+        let expectedName = "Test Name"
+        let expectedDescription = "Test Description"
+        let imageUrl = "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"
+        let characterMarvel = CharacterMarvel(id: 1, name: expectedName, description: expectedDescription, imageUrl: imageUrl)
+        characterTableViewCell.prepareForReuse()
+        XCTAssertEqual(characterTableViewCell.imageView?.image, nil)
+        characterTableViewCell.setup(character: characterMarvel)
+        XCTAssertEqual(characterTableViewCell.nameLabel.text, expectedName)
+    }
 }

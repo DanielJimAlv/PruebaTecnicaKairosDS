@@ -45,7 +45,10 @@ class ClientTests: XCTestCase {
                 
         let expectation = expectation(description: "Test client Expectation")
         
-        client.getData(testStringUrl, model: TestModel.self, sessionConfiguration: URLSessionMock.createConfiguration()) { maybeTestModel, maybeError in
+        client.getData(
+            testStringUrl,
+            model: TestModel.self,
+            sessionConfiguration: URLSessionMock.createConfiguration()) { maybeTestModel, maybeError in
             if let error = maybeError {
                 XCTFail(error.localizedDescription)
             }
@@ -70,8 +73,11 @@ class ClientTests: XCTestCase {
         
         let expectation = expectation(description: "Test client Exptectation")
         
-        client.getData(testStringUrl, model: TestModel.self, sessionConfiguration: URLSessionMock.createConfiguration()) { maybeTestModel, maybeError in
-            
+        client.getData(
+            testStringUrl,
+            model: TestModel.self,
+            sessionConfiguration: URLSessionMock.createConfiguration()) { maybeTestModel, maybeError in
+                
             XCTAssert(maybeError != nil)
             XCTAssert(maybeTestModel == nil)
             expectation.fulfill()
@@ -88,7 +94,10 @@ class ClientTests: XCTestCase {
         
         let expectation = expectation(description: "Test client Expectation")
         
-        client.getData(testStringUrl, model: TestModel.self, sessionConfiguration: URLSessionMock.createConfiguration()) { _, maybeError in
+        client.getData(
+            testStringUrl,
+            model: TestModel.self,
+            sessionConfiguration: URLSessionMock.createConfiguration()) { _, maybeError in
             
             XCTAssert(maybeError != nil)
             expectation.fulfill()

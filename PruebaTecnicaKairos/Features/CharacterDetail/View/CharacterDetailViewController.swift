@@ -29,7 +29,9 @@ class CharacterDetailViewController: UIViewController {
     }
     
     static func create(id: Int, viewModel: CharacterDetailViewModelProtocol) -> CharacterDetailViewController {
-        guard let result = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: identifier) as? CharacterDetailViewController else {
+        guard let result =
+                UIStoryboard(name: "Main", bundle: Bundle.main)
+                .instantiateViewController(withIdentifier: identifier) as? CharacterDetailViewController else {
             fatalError("Coult not cast to \(identifier)")
         }
         result.viewModel = viewModel

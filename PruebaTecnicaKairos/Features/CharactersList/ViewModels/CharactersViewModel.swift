@@ -33,7 +33,11 @@ final class CharacterViewModel: CharacterViewModelProtocol {
     var characters: [CharacterMarvel] = []
     
     func getCharacters(with sessionConfiguration: URLSessionConfiguration?, completion: @escaping (String?) -> Void) {
-        client.getData(MarvelConstants.charactersUrl, model: CharactersModel.self, params: nil, sessionConfiguration: sessionConfiguration) { [weak self]  maybeCharacters, maybeError in
+        client.getData(
+            MarvelConstants.charactersUrl,
+            model: CharactersModel.self,
+            params: nil,
+            sessionConfiguration: sessionConfiguration) { [weak self]  maybeCharacters, maybeError in
             guard let self = self, let characters = maybeCharacters?.data.results else {
                 completion(maybeError?.localizedDescription ?? "Error loading characters")
                 return
@@ -41,10 +45,6 @@ final class CharacterViewModel: CharacterViewModelProtocol {
             self.characters = self.converCharacters(characters)
             completion(nil)
         }
-    }
-    
-    func cancel() {
-        client.cancel()
     }
 }
 

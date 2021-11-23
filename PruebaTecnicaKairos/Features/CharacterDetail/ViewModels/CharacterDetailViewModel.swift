@@ -43,7 +43,10 @@ final class CharacterDetailViewModel: CharacterDetailViewModelProtocol {
     
     func getDetail(id: Int, sessionConfiguration: URLSessionConfiguration?, completion: @escaping (String?) -> Void) {
         let url = MarvelConstants.characterDetailUrl(id: id)
-        client.getData(url, model: CharacterDetailModel.self, params: nil, sessionConfiguration: sessionConfiguration) { [weak self]  maybeDetail, maybeError in
+        client.getData(
+            url, model: CharacterDetailModel.self,
+            params: nil,
+            sessionConfiguration: sessionConfiguration) { [weak self]  maybeDetail, maybeError in
             guard let self = self, let detail = maybeDetail else {
                 completion(maybeError?.localizedDescription ?? "Error loading character detail")
                 return
@@ -53,9 +56,6 @@ final class CharacterDetailViewModel: CharacterDetailViewModelProtocol {
         }
     }
     
-    func cancel() {
-        client.cancel()
-    }
 }
 
 struct CharacterDetail {

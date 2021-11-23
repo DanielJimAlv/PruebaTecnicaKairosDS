@@ -70,7 +70,9 @@ class CharacterListTests: XCTestCase {
         let expectedNumberOfRows = 20
         let identifier = CharactersListViewController.identifier
         let bundle = Bundle(for: CharactersListViewController.self)
-        guard let characterVC = UIStoryboard(name: "Main", bundle: bundle).instantiateViewController(withIdentifier: identifier) as? CharactersListViewController else {
+        guard let characterVC =
+                UIStoryboard(name: "Main", bundle: bundle)
+                .instantiateViewController(withIdentifier: identifier) as? CharactersListViewController else {
             XCTFail("Could not instatiate CharacterListViewController")
             return
         }
@@ -81,7 +83,8 @@ class CharacterListTests: XCTestCase {
         
         XCTAssertEqual(characterVC.tableView.numberOfRows(inSection: 0), expectedNumberOfRows)
         
-        guard let characterTableViewCell = characterVC.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CharacterTableViewCell else {
+        guard let characterTableViewCell =
+                characterVC.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CharacterTableViewCell else {
             XCTFail("Could not cast to CharacterTableViewCell")
             return
         }

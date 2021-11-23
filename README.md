@@ -1,20 +1,21 @@
-# Prueba Tecnica Kairos
+# Test Kairos
 
 
-## Descripción
-Se realiza esta prueba tecnica usando le api de Marvel (https://developer.marvel.com)
+## Description
+This app use Marvel api (https://developer.marvel.com)
 
-Para esta prueba no he usado ninguna libreria externa, soy bastante reacio a usarlas, a no ser que sean imprescindibles, siempre intento analizar los pros y los contras, he usado test unitarios siempre antes de implementar la vista, asi puedo probar que el código funcina antes de pelearme con ella, entiendo que es muy mejorable, pero tratandose de una prueba considero que está lo suficientemente lograda.
+For this test I have not used any external libraries, I am quite reluctant to use them, unless they are essential, I always try to analyze the pros and cons, I have always used unit tests before implementing the view, so I can test that the code works Before fighting with her, I understand that it can be improved, but being a test I consider that it is sufficiently successful.
  
-Se pueden implementar muchas más opciones, es cuestión de echarle tiempo, siempre intento que el código quede lo más limpio posible, huyendo de clase enormes, dividiendo el código y no creando funciones ni clases muy largas.
+Many more options can be implemented, it is a matter of spending time, I always try to make the code as clean as possible, avoiding the huge class, dividing the code and not creating very long functions or classes.
 
-He usado una arquitectura que podemos llamar MVVM, me hubiera gustado usar SwiftUI y combine pero se especificaba que no se usara en este caso, he intentando hacerla de la forma más tradicinal posible.
+I have used an architecture that we can call MVVM, the reason for using this architecture is to be able to test the code, I would have liked to use SwiftUI for the visual part, together Combine but it was specified that it should not be used in this case.
 
-## Requerimientos para compilar
+
+## Requirements to compile
 
 * Xcode 13+
 * iOS 15+
 
-Gracias por su atención
+Thank you for your time
 ### Daniel Jiménez Álvarez
 

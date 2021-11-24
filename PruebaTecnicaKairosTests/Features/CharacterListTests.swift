@@ -10,22 +10,18 @@ import XCTest
 
 class CharacterListTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-    
     func testCharacterModel() {
         let expectedCode =  200
         let expectedStatus = "Ok"
+        let expectedOffset = 0
+        let expectedLimit = 20
+        let expectedTotal = 1559
+        let expectedCount = 20
         let expectedResultsCount = 20
         let expectedResultId = 1011334
         let expectedResultName = "3-D Man"
         let expectedResultDescription = "3-D Description"
-        let expectedResultThumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"
+        let expectedResultThumbnailPath = "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"
         let expectedResultThumbnailExtension = "jpg"
         
         let data = LoadJsonHelper.loadJson(name: "CharactersMock")
@@ -36,8 +32,12 @@ class CharacterListTests: XCTestCase {
                 
         XCTAssertEqual(charactersModel.code, expectedCode)
         XCTAssertEqual(charactersModel.status, expectedStatus)
+        XCTAssertEqual(charactersModel.data.offset, expectedOffset)
+        XCTAssertEqual(charactersModel.data.limit, expectedLimit)
+        XCTAssertEqual(charactersModel.data.total, expectedTotal)
+        XCTAssertEqual(charactersModel.data.count, expectedCount)
         XCTAssertEqual(charactersModel.data.results.count, expectedResultsCount)
-        XCTAssertEqual(charactersModel.data.results[0].id, expectedResultId)
+        XCTAssertEqual(charactersModel.data.results[0].characterId, expectedResultId)
         XCTAssertEqual(charactersModel.data.results[0].name, expectedResultName)
         XCTAssertEqual(charactersModel.data.results[0].description, expectedResultDescription)
         XCTAssertEqual(charactersModel.data.results[0].thumbnail.path, expectedResultThumbnailPath)

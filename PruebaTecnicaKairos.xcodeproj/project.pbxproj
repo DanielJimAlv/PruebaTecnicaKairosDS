@@ -30,6 +30,7 @@
 		657984D3274A9CDA00930F18 /* CharacterDetailMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 657984D2274A9CDA00930F18 /* CharacterDetailMock.json */; };
 		657984D7274C065400930F18 /* CharacterDetailViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657984D6274C065400930F18 /* CharacterDetailViewModelMock.swift */; };
 		657984DA274C149F00930F18 /* CharacterListViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657984D9274C149F00930F18 /* CharacterListViewModelMock.swift */; };
+		659126AC274E1CC000022D1C /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659126AB274E1CC000022D1C /* UITableView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		657984D2274A9CDA00930F18 /* CharacterDetailMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CharacterDetailMock.json; sourceTree = "<group>"; };
 		657984D6274C065400930F18 /* CharacterDetailViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModelMock.swift; sourceTree = "<group>"; };
 		657984D9274C149F00930F18 /* CharacterListViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModelMock.swift; sourceTree = "<group>"; };
+		659126AB274E1CC000022D1C /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		653CC03D273C43E500B276B3 = {
 			isa = PBXGroup;
 			children = (
+				654DED67273CECD7005EEA9D /* Shared */,
 				653CC048273C43E500B276B3 /* PruebaTecnicaKairos */,
 				653CC063273C4CAC00B276B3 /* PruebaTecnicaKairosTests */,
 				653CC047273C43E500B276B3 /* Products */,
@@ -113,8 +116,7 @@
 				653CC05D273C4C7100B276B3 /* Features */,
 				653CC049273C43E500B276B3 /* AppDelegate.swift */,
 				653CC04F273C43E500B276B3 /* Main.storyboard */,
-				653CC052273C43E500B276B3 /* Assets.xcassets */,
-				653CC054273C43E500B276B3 /* LaunchScreen.storyboard */,
+				659126A6274D469300022D1C /* Resources */,
 				653CC057273C43E500B276B3 /* Info.plist */,
 			);
 			path = PruebaTecnicaKairos;
@@ -123,7 +125,6 @@
 		653CC05D273C4C7100B276B3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				654DED67273CECD7005EEA9D /* Shared */,
 				653CC06D273C4CF100B276B3 /* CharactersList */,
 				6576E5AA273D8E680005C184 /* CharacterDetail */,
 			);
@@ -179,9 +180,9 @@
 		654DED67273CECD7005EEA9D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				654DED68273CECFB005EEA9D /* Client.swift */,
-				6576E5A6273D7F790005C184 /* UIImageView+Extension.swift */,
-				657984C3274A38B600930F18 /* MarvelConstants.swift */,
+				659126A3274D465400022D1C /* Client */,
+				659126A4274D466500022D1C /* Extensions */,
+				659126A5274D467200022D1C /* Constants */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -190,7 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				6576E5A1273D7A7C0005C184 /* CharactersListViewController.swift */,
-				6576E5A8273D87F80005C184 /* CharacterTableViewCell.swift */,
+				659126A7274D646700022D1C /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -255,6 +256,48 @@
 				657984D2274A9CDA00930F18 /* CharacterDetailMock.json */,
 			);
 			path = Json;
+			sourceTree = "<group>";
+		};
+		659126A3274D465400022D1C /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				654DED68273CECFB005EEA9D /* Client.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		659126A4274D466500022D1C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6576E5A6273D7F790005C184 /* UIImageView+Extension.swift */,
+				659126AB274E1CC000022D1C /* UITableView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		659126A5274D467200022D1C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				657984C3274A38B600930F18 /* MarvelConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		659126A6274D469300022D1C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				653CC052273C43E500B276B3 /* Assets.xcassets */,
+				653CC054273C43E500B276B3 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		659126A7274D646700022D1C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6576E5A8273D87F80005C184 /* CharacterTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +435,7 @@
 				6576E5AD273D8EB00005C184 /* CharacterDetailViewModel.swift in Sources */,
 				653CC072273C53BE00B276B3 /* CharactersViewModel.swift in Sources */,
 				6576E5A9273D87F80005C184 /* CharacterTableViewCell.swift in Sources */,
+				659126AC274E1CC000022D1C /* UITableView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

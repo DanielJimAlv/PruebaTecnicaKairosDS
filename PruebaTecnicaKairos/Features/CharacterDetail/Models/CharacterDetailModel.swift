@@ -18,7 +18,7 @@ struct CharacterDetailDataModel: Decodable {
 }
 
 struct CharacterDetailResultsModel: Decodable {
-    let id: Int
+    let characterId: Int
     let name: String
     let description: String
     let thumbnail: CharacterThumbnail
@@ -26,6 +26,11 @@ struct CharacterDetailResultsModel: Decodable {
     let series: CharacterDetailSeries
     let stories: CharacterDetailStories
     let events: CharacterDetailEvents
+    
+    enum CodingKeys: String, CodingKey {
+        case characterId = "id"
+        case name, description, thumbnail, comics, series, stories, events
+    }
 }
 
 struct CharacterDetailComics: Decodable {

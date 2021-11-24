@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 enum ResposeError: Error {
     case responseError(String)
@@ -54,18 +53,17 @@ final class Client {
         
         task?.resume()
     }
-    
-    func cancel() {
-        task?.cancel()
-    }
-    
+        
     private func createUrl(with params: [String: Any]?, stringUrl: String) -> URL {
         guard let url = URL(string: stringUrl) else {
             fatalError("url must be a valid url")
         }
         
-        if let params = params {
+        if var params = params {
             var components = URLComponents(string: stringUrl)
+            components?.queryItems?.forEach { item in
+                params[item.name] = item.value
+            }
             components?.queryItems = params.map { key, value in
                 URLQueryItem(name: key, value: "\(value)")
             }

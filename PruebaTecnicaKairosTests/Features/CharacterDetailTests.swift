@@ -10,14 +10,6 @@ import XCTest
 
 class CharacterDetailTests: XCTestCase {
     let characterId = 1011334
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
     
     func testCharacterDetailModel() {
         let expectedCode =  200
@@ -26,7 +18,7 @@ class CharacterDetailTests: XCTestCase {
         let expectedResultId = 1011334
         let expectedResultName = "3-D Man"
         let expectedResultDescription = "3-D Description"
-        let expectedResultThumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"
+        let expectedResultThumbnailPath = "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"
         let expectedResultThumbnailExtension = "jpg"
         
         let data = LoadJsonHelper.loadJson(name: "CharacterDetailMock")
@@ -38,7 +30,7 @@ class CharacterDetailTests: XCTestCase {
         XCTAssertEqual(characterDetailModel.code, expectedCode)
         XCTAssertEqual(characterDetailModel.status, expectedStatus)
         XCTAssertEqual(characterDetailModel.data.results.count, expectedResultsCount)
-        XCTAssertEqual(characterDetailModel.data.results[0].id, expectedResultId)
+        XCTAssertEqual(characterDetailModel.data.results[0].characterId, expectedResultId)
         XCTAssertEqual(characterDetailModel.data.results[0].name, expectedResultName)
         XCTAssertEqual(characterDetailModel.data.results[0].description, expectedResultDescription)
         XCTAssertEqual(characterDetailModel.data.results[0].thumbnail.path, expectedResultThumbnailPath)

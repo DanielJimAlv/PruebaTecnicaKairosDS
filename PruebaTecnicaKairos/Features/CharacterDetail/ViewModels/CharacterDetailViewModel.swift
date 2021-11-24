@@ -18,12 +18,10 @@ extension CharacterDetailViewModelProtocol {
         var imageUrl: String?
         if let path = detail.data.results.first?.thumbnail.path, let ext = detail.data.results.first?.thumbnail.extension {
             imageUrl = "\(path).\(ext)"
-            // Workaround path is http we need https (http url not secure)
-            imageUrl = imageUrl?.replacingOccurrences(of: "http://", with: "https://")
         }
         
         let result = CharacterDetail(
-            id: detail.data.results.first?.id ?? 0,
+            id: detail.data.results.first?.characterId ?? 0,
             name: detail.data.results.first?.name ?? "",
             description: detail.data.results.first?.description ?? "",
             imageUrl: imageUrl,

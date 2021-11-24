@@ -16,17 +16,29 @@ final class CharactersListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupAppeareance()
+        setupTable()
         getData()
     }
     
     // MARK: - UITableViewDataSource
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        tableView.numberOfSections
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.characters.count
+        if tableView.isLoadingSection(section) {
+            return 1
+        } else {
+            return viewModel.characters.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView.isLoadingSection(indexPath.section) {
+            let cell = tableView.getLoadingCell(with: getData)
+            return cell
+        }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CharacterTableViewCell else {
             fatalError("Could not dequeue Cell")
         }
@@ -42,7 +54,7 @@ final class CharactersListViewController: UITableViewController {
         let detailViewController = CharacterDetailViewController.create(id: id, viewModel: CharacterDetailViewModel())
         navigationController?.pushViewController(detailViewController, animated: true)
     }
-
+    
     private func showError(_ error: String) {
         let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
         let alert = UIAlertController(title: appName, message: error, preferredStyle: .alert)
@@ -50,9 +62,10 @@ final class CharactersListViewController: UITableViewController {
     }
     
     private func getData() {
-        activiyIndicator.startAnimating()
+        guard !viewModel.isLoadingData, viewModel.hasMoreData else {
+            return
+        }
         viewModel.getCharacters(with: nil) { [weak self] maybeError in
-            self?.activiyIndicator.stopAnimating()
             if let error = maybeError {
                 self?.showError(error)
             }
@@ -61,13 +74,7 @@ final class CharactersListViewController: UITableViewController {
         }
     }
     
-    private func setupAppeareance() {
-        activiyIndicator.hidesWhenStopped = true
-        activiyIndicator.stopAnimating()
-        activiyIndicator.style = .large
-        view.addSubview(activiyIndicator)
-        activiyIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activiyIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        activiyIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    private func setupTable() {
+        tableView.numberOfSections = 1
     }
 }

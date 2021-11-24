@@ -10,6 +10,8 @@ import Foundation
 
 class CharacterListViewModelMock: CharacterViewModelProtocol {
     var characters: [CharacterMarvel] = []
+    var hasMoreData = true
+    var isLoadingData = false
     
     func getCharacters(with sessionConfiguration: URLSessionConfiguration?, completion: @escaping (String?) -> Void) {
         let data = LoadJsonHelper.loadJson(name: "CharactersMock")
